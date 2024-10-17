@@ -1,0 +1,32 @@
+<div class="container mt-5" >
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card">
+          <!-- <div class="card-header">
+            Login
+          </div> -->
+          <div class="card-body">
+
+            <form [formGroup]="myform">
+
+              <div *ngIf=" isvalid" class="alert alert-danger" role="alert">
+                Wrong info
+              </div>
+
+              <div class="mb-2">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" style="height: 50px;" id="email" aria-describedby="emailHelp" formControlName="email">
+              </div>
+
+              <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" style="height: 50px;" id="password" formControlName="password">
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-center" style="width: 100%; padding-top: 10px; padding-bottom: 10px;" (click)="signin()">Sign In</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

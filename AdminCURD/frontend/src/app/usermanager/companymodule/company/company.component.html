@@ -1,0 +1,99 @@
+<ng-template #deleteComapnyDialog>
+    <mat-dialog-content>
+        Do you want to delete the <strong style="color: orangered;"><i>{{delData}}</i></strong> company?
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>No</button>
+        <button mat-button mat-dialog-close (click)="deletealert()">Yes</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> Company List</h5>
+                    <table class="table table-striped table-fixed">
+                        <thead align="center">
+                            <tr>
+                                <th> Name </th>
+                                <th> Email</th>
+                                <th> Package </th>
+                                <!-- <th> Description </th> -->
+                                <th> Delete </th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            @for (row of companyList(); track $index) {
+                            <tr>
+                                <td>{{ row.name }}</td>
+                                <td>{{ row.email }}</td>
+                                <td>{{ row.package }}</td>
+                                <!-- <td>{{ row.description }}</td> -->
+                                <td><button mat-button (click)="companyDelete(row)">Delete</button></td>
+                            </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-right">Total Users: {{ companyList().length }}</td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="createform">
+                        <strong> Create a Company</strong><br><br>
+                        <form [formGroup]="myform">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Company Name</mat-label>
+                                <input matInput formControlName="name">
+                                <mat-error
+                                    *ngIf="myform.get('name')?.hasError('required') && myform.get('name')?.touched">
+                                    Company Name is required
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Company Email</mat-label>
+                                <input matInput formControlName="email">
+                                <mat-error
+                                    *ngIf="myform.get('email')?.hasError('required') && myform.get('email')?.touched">
+                                    Email is required
+                                </mat-error>
+                                <mat-error
+                                    *ngIf="myform.get('email')?.hasError('email')&& myform.get('email')?.hasError('pattern') && myform.get('email')?.touched">
+                                    Enter a valid email
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Package</mat-label>
+                                <input matInput formControlName="package">
+                                <mat-error
+                                    *ngIf="myform.get('name')?.hasError('required') && myform.get('name')?.touched">
+                                    Package is required
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput formControlName="description"></textarea>
+                            </mat-form-field>
+
+                            <div class="create">
+                                <button class="btn btn-success" type="submit" (click)="companycreate()">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

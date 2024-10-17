@@ -1,0 +1,78 @@
+
+<ng-template #deleteGroupDialog>
+    <mat-dialog-content>
+        Do you want to delete the <strong style="color: orangered;"><i>{{delData}}</i></strong> group?    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close>No</button>
+      <button mat-button mat-dialog-close (click)="deletealert()">Yes</button>
+    </mat-dialog-actions>
+  </ng-template>
+
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> Group Information</h5>
+                    <table class="table table-striped table-fixed">
+                        <thead align="center">
+                            <tr>
+                                <th> Group Name </th>
+                                <th> Group Description </th>
+                                <th> Delete </th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            @for (row of grouplist(); track $index) {
+                            <tr>
+                                <td>{{ row.group_name }}</td>
+                                <td>{{ row.description }}</td>
+                                <td><button mat-button (click)="groupDelete(row)">Delete</button></td>
+                            </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-right">Total Users: {{ grouplist().length }}</td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-5">
+            <div class="card">
+                <div class="card-body">
+                    <div class="createform">
+                        <strong> Create a Group</strong><br><br>
+                        <form [formGroup]="myform">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Group Name</mat-label>
+                                <input matInput formControlName="name">
+                                <mat-error
+                                    *ngIf="myform.get('name')?.hasError('required') && myform.get('name')?.touched">
+                                    Group Name is required
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Group Description</mat-label>
+                                <!-- <input matInput formControlName="description"> -->
+                                <!-- <mat-label>Textarea</mat-label> -->
+                                <textarea matInput formControlName="description"></textarea>
+                            </mat-form-field>
+
+                            <div class="create">
+                                <button class="btn btn-success" type="submit" (click)="create()">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

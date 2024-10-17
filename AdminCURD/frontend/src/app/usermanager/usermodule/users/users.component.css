@@ -1,0 +1,65 @@
+.select,
+#locale {
+  width: 100%;
+}
+
+.like {
+  margin-right: 10px;
+}
+
+#toolbar {
+  margin-bottom: 10px;
+}
+
+.create {
+  position: absolute;
+  right: 20px;
+  /* margin-left: 78%; */
+  /* margin-7ottom: 10px; */
+}
+
+.space {
+  margin-left: 5px;
+}
+
+
+#toolbar {
+  position: sticky;
+  top: 55px;
+  z-index: 999;
+  background-color: white;
+  padding: 10px;
+}
+
+
+table thead th {
+  position: sticky;
+  top: 110px;
+  z-index: 999;
+  background-color: white;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+table tfoot {
+  position: sticky;
+  bottom: 0;
+  z-index: 998;
+  background-color: white;
+  box-shadow: 0 -2px 2px -1px rgba(0, 0, 0, 0.4);
+  /* Shadow for better visibility */
+}
+
+.thmain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.throw {
+  margin-left: 5px;
+}
+
+.thbtn {
+  border: 0;
+  background-color: white;
+}

@@ -1,0 +1,84 @@
+<form [formGroup]="myform">
+    <h1 mat-dialog-title>{{ inputdata.title }}</h1>
+    <div mat-dialog-content>
+  
+      <!-- Name Input Field -->
+      <mat-form-field style="width: 100%;">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+        <!-- Error message for 'name' if required -->
+        <mat-error *ngIf="myform.get('name')?.hasError('required') && myform.get('name')?.touched">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Email Input Field -->
+      <mat-form-field style="width: 100%;">
+        <mat-label>Email</mat-label>
+        <!-- <input matInput [formControl]="getemail"> -->
+        <input matInput formControlName="email">
+        <!-- Error message for 'email' -->
+        <mat-error *ngIf="myform.get('email')?.hasError('required') && myform.get('email')?.touched">
+          Email is required
+        </mat-error>
+        <mat-error
+          *ngIf="myform.get('email')?.hasError('email')&& myform.get('email')?.hasError('pattern') && myform.get('email')?.touched">
+          Enter a valid email
+        </mat-error>
+        <mat-error *ngIf="myform.get('email')?.hasError('emailExists')">
+          Email Already Exist
+        </mat-error>
+      </mat-form-field>
+  
+  
+      <!-- Password Input Field -->
+      <mat-form-field style="width: 49%;">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [formControl]="passwordControl">
+        <mat-error *ngIf="passwordControl.hasError('required') && passwordControl.touched">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="passwordControl.hasError('minlength') && passwordControl.hasError('pattern') && passwordControl.touched">
+            <small>At least 8 characters in length</small> <br>
+            <small>, At least Lowercase & Uppercase letters</small><br>
+            <small>, At least Numbers & Special characters</small>
+            
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field style="width: 49%; margin-left: 5px;">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" [formControl]="confirmPasswordControl">
+        <!-- {{confirmPasswordControl.hasError('confirmPasswordMatch')}} -->
+        <mat-error *ngIf="confirmPasswordControl.hasError('confirmPasswordMatch') && confirmPasswordControl.touched">
+          Passwords do not match
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Group Permission Field -->
+      <mat-form-field style="width: 100%;">
+        <mat-label>Group Permission</mat-label>
+        <mat-select formControlName="group">
+          <mat-option *ngFor="let group of grouplist" [value]="group.id">
+            {{ group.group_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+  
+      <!-- Company Field -->
+      <mat-form-field style="width: 100%;">
+        <mat-label>Company Name</mat-label>
+        <mat-select formControlName="company">
+          <mat-option *ngFor="let company of companylist" [value]="company.id">
+            {{ company.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" color="primary" (click)="save()">Create</button>
+      <button mat-raised-button color="warn" (click)="closepopup()">Close</button>
+    </div>
+  </form>

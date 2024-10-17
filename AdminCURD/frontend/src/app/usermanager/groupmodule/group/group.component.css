@@ -1,0 +1,12 @@
+.createform {
+    /* position: absolute;
+    right: 10px; */
+    
+    /* border: 1px solid rgb(152, 152, 152); */
+    padding: 50px;
+}
+
+.create {
+    position: relative;
+    right: 0px;
+}
